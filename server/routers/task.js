@@ -7,12 +7,17 @@ const taskCtrl = require('../controller/taskControl')
 //   res.send('task');
 // })
 
+// create
+router.post('/', taskCtrl.createTask)
+
+// read
 router.get('/', taskCtrl.getAll)
+router.get('/:id', taskCtrl.findById)
 
-router.post('/', taskCtrl.create)
+// update
+router.put('/:id', taskCtrl.updateTask)
 
-router.put('/edit/:id', taskCtrl.updateTask)
-
-router.delete('/edit/:d', taskCtrl.deleteTask)
+// delete
+router.delete('/:id', taskCtrl.deleteTask)
 
 module.exports = router;

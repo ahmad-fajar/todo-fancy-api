@@ -6,7 +6,7 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
-    uinque: true
+    unique: true
   },
   password: {
     type: String,
@@ -17,15 +17,18 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-  key:{
+  role:{
     type: String,
+    default: 'user',
     required: true
   },
   task_list: [{
       type: Schema.Types.ObjectId,
-      ref: 'Task'
+      ref: 'tasks'
     }]
+}, {
+  timestamps: true
 })
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('users', userSchema);
 module.exports = User;

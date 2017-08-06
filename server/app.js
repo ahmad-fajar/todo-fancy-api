@@ -5,6 +5,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 
+// mongoose.connect('mongodb://localhost/todo-fancy')
+mongoose.connect('mongodb://hacktiv8:hacktiv8Super@cluster0-shard-00-00-remkh.mongodb.net:27017,cluster0-shard-00-01-remkh.mongodb.net:27017,cluster0-shard-00-02-remkh.mongodb.net:27017/todo-fancy?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
+
+
 const app = express();
 
 app.use(cors())
@@ -16,16 +20,11 @@ app.use(bodyParser.json({ type : 'application/x-www-form-urlencoded'}));
 
 const index = require('./routers/index');
 const task  = require('./routers/task');
-// const user  = require('./routers/user');
+const user  = require('./routers/user');
 
 app.use('/', index);
 app.use('/task', task);
+app.use('/user', user);
 
 
-mongoose.connect('mongodb://localhost/todo-fancy')
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  app.listen(3000, () => console.log('Listening: localhost:3000'));
-})
-
+app.listen(3000, () => console.log('Listening...'))

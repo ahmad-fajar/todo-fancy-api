@@ -15,10 +15,8 @@ const taskSchema = new Schema({
     default: false
   }
 }, {
-  timestamps:{
-    createdAt: 'created_at'
-  }
+  timestamps: true
 })
 
-const Task = mongoose.model('Task', taskSchema);
+const Task = mongoose.model('tasks', taskSchema);
 module.exports = Task;
